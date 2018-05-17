@@ -1,0 +1,13 @@
+{% extends "baseBezoeker.twig" %}
+
+{% block body %}
+
+    <ul>
+        {% for rule in rules %}
+       <li>
+           {{ rule }}
+       </li>
+        {% endfor %}
+    </ul>
+
+{% endblock %}

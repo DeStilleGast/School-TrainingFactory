@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block loginLogout %}
+
+    <form action="{{ path('login') }}" method="post">
+        <table>
+            <tr>
+                <td>
+                    <label for="username">Username:</label>
+                </td>
+                <td>
+                    <input type="text" id="username" name="_username"/>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="password">Password:</label>
+                </td>
+                <td>
+                    <input type="password" id="password" name="_password" />
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>
+                    {#//TODO
+                    Soms kan ik iemand wel neerschieten #}
+
+                    {% if error is defined and error %}
+                        {{ error[0].message }}
+                    {% endif %}
+
+                    <button class="btn btn-primary float-right" type="submit">login</button></td>
+            </tr>
+
+        </table>
+
+        {#
+            If you want to control the URL the user
+            is redirected to on success (more details below)
+            <input type="hidden" name="_target_path" value="/account" />
+        #}
+    </form>
+
+{% endblock %}
