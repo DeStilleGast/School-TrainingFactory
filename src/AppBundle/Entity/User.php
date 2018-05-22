@@ -34,9 +34,15 @@ class User implements UserInterface, \Serializable
 
     /**
      * @ORM\Column(type="string", length=64)
-     * @Assert\NotBlank()
      */
     private $password;
+
+    /**
+     * @Assert\Length(max=4096)
+     * @Assert\NotBlank(message="vul een wachtwoord in")
+     */
+    private $plainPassword;
+
 
     /**
      * @ORM\Column(type="json_array")
@@ -83,6 +89,14 @@ class User implements UserInterface, \Serializable
 
 
 
+    /**
+     * @return mixed
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
 
     /**
      * Returns the roles granted to the user.
@@ -119,6 +133,16 @@ class User implements UserInterface, \Serializable
     }
 
     /**
+     * @param mixed $password
+     */
+    public function setPassword($password)
+    {
+        $this->password = $password;
+    }
+
+
+
+    /**
      * Returns the salt that was originally used to encode the password.
      *
      * This can return null if the password was not encoded using a salt.
@@ -139,6 +163,122 @@ class User implements UserInterface, \Serializable
     {
         return $this->username;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getFirstname()
+    {
+        return $this->firstname;
+    }
+
+    /**
+     * @param mixed $firstname
+     */
+    public function setFirstname($firstname)
+    {
+        $this->firstname = $firstname;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getPreprovision()
+    {
+        return $this->preprovision;
+    }
+
+    /**
+     * @param mixed $preprovision
+     */
+    public function setPreprovision($preprovision)
+    {
+        $this->preprovision = $preprovision;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getLastname()
+    {
+        return $this->lastname;
+    }
+
+    /**
+     * @param mixed $lastname
+     */
+    public function setLastname($lastname)
+    {
+        $this->lastname = $lastname;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getDateofbirth()
+    {
+        return $this->dateofbirth;
+    }
+
+    /**
+     * @param mixed $dateofbirth
+     */
+    public function setDateofbirth($dateofbirth)
+    {
+        $this->dateofbirth = $dateofbirth;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getGender()
+    {
+        return $this->gender;
+    }
+
+    /**
+     * @param mixed $gender
+     */
+    public function setGender($gender)
+    {
+        $this->gender = $gender;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getEmail()
+    {
+        return $this->email;
+    }
+
+    /**
+     * @param mixed $email
+     */
+    public function setEmail($email)
+    {
+        $this->email = $email;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getPlainPassword()
+    {
+        return $this->plainPassword;
+    }
+
+    /**
+     * @param mixed $plainPassword
+     */
+    public function setPlainPassword($plainPassword)
+    {
+        $this->plainPassword = $plainPassword;
+    }
+
+
+
+
 
     /**
      * Removes sensitive data from the user.

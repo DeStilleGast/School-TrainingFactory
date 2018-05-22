@@ -2,11 +2,14 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Entity\Member;
+use AppBundle\Form\RegisterMemberType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
 class DefaultController extends Controller
@@ -15,7 +18,8 @@ class DefaultController extends Controller
         return [
             ["title" => "Homepage", "path" => "homepage"],
             ["title" => "Gedrag regels", "path" => "bezoekerGedragRegels"],
-            ["title" => "Contact", "path" => "bezoekerContact"]
+            ["title" => "Contact", "path" => "bezoekerContact"],
+            ["title" => "Registreren", "path" => "registerLid"]
         ];
     }
 
@@ -33,12 +37,6 @@ class DefaultController extends Controller
 
         $this->addFlash("loginError", $error);
         return $this->redirectToRoute("homepage");
-
-//        return $this->render('default/baseBezoeker.twig', array(
-//            'last_username' => $lastUsername,
-//            'error'         => $error,
-//            'simpleMenu' => $this->generateMenu(),
-//        ));
     }
 
 
@@ -49,7 +47,6 @@ class DefaultController extends Controller
     {
         // replace this example code with whatever you need
         return $this->xRender('Bezoeker/homepage.html.twig', [
-//            'currentMenu' => "homepage",
             "error" => $this->get('session')->getFlashBag()->get("loginError"),
         ]);
     }
@@ -82,6 +79,40 @@ class DefaultController extends Controller
     public function contact(){
         return $this->xRender("Bezoeker/contact.html.twig");
     }
+
+    /**
+     * @Route("/register", name="registerLid")
+    */
+    public function register(Request $request, UserPasswordEncoderInterface $passwordEncoder){
+
+        //Create builder
+        $member = new Member();
+        $form = $this->createForm(RegisterMemberType::class, $member);
+
+        // handler submit if any
+        $form->handleRequest($request);
+        if($form->isSubmitted() && $form->isValid()){
+            //Encode the password
+            $password = $passwordEncoder->encodePassword($member, $member->getPlainPassword());
+            $member->setPassword($password);
+
+            //save the User!
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($member);
+            $entityManager->flush();
+
+            $this->addFlash("ok", "You are registered, please log in");
+            return $this->redirectToRoute("login");
+        }
+
+        return $this->xRender(
+            'Bezoeker/register.html.twig',
+            array('form' => $form->createView())
+        );
+
+    }
+
+
 
     private function xRender($view, array $arr = array(), Response $response = null){
         return $this->render($view, array_merge($arr, ['simpleMenu' => $this->generateMenu()]), $response);
