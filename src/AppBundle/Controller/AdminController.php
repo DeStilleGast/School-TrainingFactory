@@ -10,8 +10,19 @@ namespace AppBundle\Controller;
 
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Routing\Annotation\Route;
 
+/**
+ * @Route("admin")
+ */
 class AdminController extends Controller
 {
 
+    /**
+     * @Route("/", name="admin_home")
+     */
+    public function palceholder(){
+        return new Response("<head></head><body>ADMIN PLACEHOLDER</body>");
+    }
 }

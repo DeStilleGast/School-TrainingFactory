@@ -13,6 +13,8 @@ security:
             entity:
                 class: AppBundle:User
                 property: username
+                # if you're using multiple entity managers
+                # manager_name: customer
 
     firewalls:
         # disables authentication for assets and the profiler, adapt it according to your needs
@@ -42,5 +44,6 @@ security:
 
 
     access_control:
-      - { path: ^/lid, roles: ROLE_LID}
-      - { path: ^/admin, roles: ROLE_ADMIN}
+      - { path: ^/lid, roles: ROLE_LID }
+      - { path: ^/instructeur, roles: ROLE_INSTRUCTEUR }
+      - { path: ^/admin, roles: ROLE_ADMIN }

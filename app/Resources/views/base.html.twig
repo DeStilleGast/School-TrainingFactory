@@ -33,15 +33,19 @@
 
             {# Niet de meest fanastiese 'dynamic' menu, maar dit werkt redelijk goed #}
             <div class="row d-flex align-items-center my-3 text-white-50 box-shadow menu">
-                {% for menuItem in simpleMenu %}
-                    <a href="{{ path(menuItem.path) }}">
-                        {% if menuItem.path == app.request.attributes.get('_route') %}
-                            <b>{{ menuItem.title }}</b>
-                        {% else %}
-                            {{ menuItem.title }}
-                        {% endif %}
-                    </a>
-                {% endfor %}
+                {% if simpleMenu is defined and simpleMenu %} {#debugging#}
+                    {% for menuItem in simpleMenu %}
+                        <a href="{{ path(menuItem.path) }}">
+                            {% if menuItem.path == app.request.attributes.get('_route') %}
+                                <b>{{ menuItem.title }}</b>
+                            {% else %}
+                                {{ menuItem.title }}
+                            {% endif %}
+                        </a>
+                    {% endfor %}
+                {% else %}
+                    <a class="menuActive">Er is geen menu gedefineerd !! {placeholder}</a>
+                {% endif %}
             </div>
             {% block header %}{% endblock %}
         </div>

@@ -11,21 +11,12 @@ use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
 class DefaultController extends Controller
 {
-
-
     private function generateMenu(){
         return [
             ["title" => "Homepage", "path" => "homepage"],
             ["title" => "Gedrag regels", "path" => "bezoekerGedragRegels"],
             ["title" => "Contact", "path" => "bezoekerContact"]
         ];
-    }
-
-    /**
-     * @Route("/admin", name="admin_home")
-     */
-    public function palceholder(){
-        return new Response("<head></head><body>ADMIN PLACEHOLDER</body>");
     }
 
 
@@ -57,10 +48,9 @@ class DefaultController extends Controller
     public function indexAction(Request $request)
     {
         // replace this example code with whatever you need
-        return $this->render('Bezoeker/homepage.html.twig', [
+        return $this->xRender('Bezoeker/homepage.html.twig', [
 //            'currentMenu' => "homepage",
             "error" => $this->get('session')->getFlashBag()->get("loginError"),
-            'simpleMenu' => $this->generateMenu(),
         ]);
     }
 
@@ -69,7 +59,6 @@ class DefaultController extends Controller
      */
     public function gedragsRegels(Request $request)
     {
-
         // source: http://www.prosportcentrum.nl/leden-info/huis-en-zaalregels/
         $gedragsRegels = ["Het gebruik van doping en stimulerende middelen is verboden.",
             "Drugsbezit en -gebruik zijn verboden en worden direct bestraft.",
@@ -82,9 +71,8 @@ class DefaultController extends Controller
             "Rommel moet worden opgeruimd."];
 
 
-        return $this->render('Bezoeker/gedragsRegels.html.twig', [
+        return $this->xRender('Bezoeker/gedragsRegels.html.twig', [
             "rules" => $gedragsRegels,
-            'simpleMenu' => $this->generateMenu(),
         ]);
     }
 
@@ -92,11 +80,12 @@ class DefaultController extends Controller
      * @Route("/contact", name="bezoekerContact")
      */
     public function contact(){
-        return $this->render("Bezoeker/contact.html.twig", [
-            "simpleMenu" => $this->generateMenu()
-        ]);
+        return $this->xRender("Bezoeker/contact.html.twig");
     }
 
+    private function xRender($view, array $arr = array(), Response $response = null){
+        return $this->render($view, array_merge($arr, ['simpleMenu' => $this->generateMenu()]), $response);
+    }
 
 
 }

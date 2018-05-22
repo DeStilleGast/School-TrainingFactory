@@ -39,6 +39,8 @@
     border-bottom-left-radius: 5px;
     border-bottom-right-radius: 5px;
 }
+
+.menuActive,
 .menu > a:hover{
     color: white;
     background-color: darkred;

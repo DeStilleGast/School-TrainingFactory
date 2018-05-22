@@ -4,11 +4,16 @@ namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Validator\Constraints as Assert;
 
 
 /**
  * @ORM\Table(name="app_users")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\UserRepository")
+ *
+ * @ORM\InheritanceType(value="SINGLE_TABLE")
+ * @ORM\DiscriminatorColumn(name="discr", type="string")
+ * @ORM\DiscriminatorMap({"user" = "User", "member" = "Member", "instructeur" = "Instructeur", "admin" = "Admin"})
  */
 class User implements UserInterface, \Serializable
 {
@@ -17,28 +22,66 @@ class User implements UserInterface, \Serializable
      * @ORM\Column(type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
+     * @Assert\Blank()
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=25, unique=true)
+     * @Assert\NotBlank()
      */
     private $username;
 
     /**
      * @ORM\Column(type="string", length=64)
+     * @Assert\NotBlank()
      */
     private $password;
-
-    /**
-     * @ORM\Column(type="string", length=254, unique=true)
-     */
-    private $email;
 
     /**
      * @ORM\Column(type="json_array")
      */
     private $roles;
+
+    /**
+     * @ORM\Column(type="string")
+     * @Assert\NotBlank(message="First name is required")
+     */
+    private $firstname;
+
+    /**
+     * @ORM\Column(type="string")
+     */
+    private $preprovision;
+
+    /**
+     * @ORM\Column(type="string")
+     * @Assert\NotBlank(message="Last name is required")
+     */
+    private $lastname;
+
+    /**
+     * @ORM\Column(type="date")
+     * @Assert\Date()
+     */
+    private $dateofbirth;
+
+    /**
+     * @ORM\Column(type="text")
+     * @Assert\Choice(choices="{'Man', 'Vrouw'}")
+     */
+    private $gender;
+
+    /**
+     * @ORM\Column(type="string", length=254, unique=true)
+     * @Assert\Email()
+     */
+    private $email;
+
+
+    private $discr;
+
+
 
 
     /**

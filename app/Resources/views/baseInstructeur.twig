@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+
+{% block loginLogout %}
+    <table>
+        <tr>
+            <td>
+                Welcome {{ app.user.hiredate|date("d-m-Y") }}
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <a href="/logout" class="btn btn-primary float-right">logout</a></td>
+            </td>
+        </tr>
+    </table>
+{% endblock %}
