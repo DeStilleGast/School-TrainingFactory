@@ -1,0 +1,57 @@
+{% extends 'baseLoggedIn.twig' %}
+
+{% block body %}
+    <h1>Member</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ user.id }}</td>
+            </tr>
+            <tr>
+                <th>Username</th>
+                <td>{{ user.username }}</td>
+            </tr>
+            <tr>
+                <th>Firstname</th>
+                <td>{{ user.firstname }}</td>
+            </tr>
+            <tr>
+                <th>Preprovision</th>
+                <td>{{ user.preprovision }}</td>
+            </tr>
+            <tr>
+                <th>Lastname</th>
+                <td>{{ user.lastname }}</td>
+            </tr>
+            <tr>
+                <th>Dateofbirth</th>
+                <td>{% if user.dateofbirth %}{{ user.dateofbirth|date('d-m-Y') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Gender</th>
+                <td>{{ user.gender }}</td>
+            </tr>
+            <tr>
+                <th>Email</th>
+                <td>{{ user.email }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <table class="col-12">
+        <tr>
+            <td class="float-left"><a class="btn btn-primary" href="{{ path('admin_lid_index') }}">Back to the list</a>
+                <a class="btn btn-dark" href="{{ path('admin_lid_edit', { 'id': user.id }) }}"><i class="fas fa-edit"></i> Edit</a></td>
+
+            <td class="float-right">{{ form_start(delete_form) }}
+                <input class="btn btn-danger" type="submit" value="Delete">
+                {{ form_end(delete_form) }}</td>
+        </tr>
+
+
+
+        </li>
+    </table>
+{% endblock %}

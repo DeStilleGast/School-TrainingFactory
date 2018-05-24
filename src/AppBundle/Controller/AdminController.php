@@ -14,15 +14,28 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
- * @Route("admin")
+ * @Route("/admin")
  */
 class AdminController extends Controller
 {
+    public static function generateMenu(){
+        return [
+            ["title" => "Home", "path" => "admin_home"],
+            ["title" => "Members", "path" => "admin_lid_index"],
+            ["title" => "Trainings", "path" => "admin_training_index"],
+
+        ];
+    }
 
     /**
      * @Route("/", name="admin_home")
      */
     public function palceholder(){
-        return new Response("<head></head><body>ADMIN PLACEHOLDER</body>");
+        return $this->xRender("Admin/home.html.twig");
+    }
+
+
+    public function xRender($view, array $arr = array(), Response $response = null){
+        return $this->render($view, array_merge($arr, ['simpleMenu' => $this->generateMenu()]), $response);
     }
 }

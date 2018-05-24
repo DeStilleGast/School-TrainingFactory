@@ -1,0 +1,24 @@
+{% extends 'baseLoggedIn.twig' %}
+
+{% block body %}
+    <h1>Training edit</h1>
+
+    {{ form_start(edit_form) }}
+        {{ form_widget(edit_form) }}
+
+    <table class="col-12">
+        <tr>
+            <td>
+                <a class="btn btn-primary" href="{{ path('admin_training_index') }}">Back to the list</a>
+                    <input class="btn btn-success" type="submit" value="Edit" />
+                {{ form_end(edit_form) }}
+            </td>
+
+            <td class="float-right">
+                {{ form_start(delete_form) }}
+                <button class="btn btn-danger" type="submit"><i class="fas fa-trash"></i> Delete</button>
+                {{ form_end(delete_form) }}
+            </td>
+        </tr>
+    </table>
+{% endblock %}

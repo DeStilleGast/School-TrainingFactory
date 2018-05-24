@@ -1,0 +1,39 @@
+{% extends 'baseLoggedIn.twig' %}
+
+{% block body %}
+    <h1>Members list</h1>
+
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Firstname</th>
+                <th>Preprovision</th>
+                <th>Lastname</th>
+                <th>Dateofbirth</th>
+                <th>Gender</th>
+                <th>Email</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for user in users %}
+            <tr>
+                {#<td><a href="{{ path('admin_lid_show', { 'id': Lid.id }) }}">{{ Lid.id }}</a></td>#}
+                <td>{{ user.firstname }}</td>
+                <td>{{ user.preprovision }}</td>
+                <td>{{ user.lastname }}</td>
+                <td>{% if user.dateofbirth %}{{ user.dateofbirth|date('Y-m-d') }}{% endif %}</td>
+                <td>{{ user.gender }}</td>
+                <td>{{ user.email }}</td>
+                <td>
+                    <a class="btn btn-primary" href="{{ path('admin_lid_show', { 'id': user.id }) }}"><i class="fas fa-glasses"></i> show</a>
+                    <a class="btn btn-warning" href="{{ path('admin_lid_edit', { 'id': user.id }) }}"><i class="fas fa-edit"></i> edit</a>
+
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a class="btn btn-primary" href="{{ path('admin_lid_new') }}">Create a new user</a>
+{% endblock %}

@@ -1,0 +1,40 @@
+{% extends 'baseLoggedIn.twig' %}
+
+{% block body %}
+    <h1>Training</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ training.id }}</td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>{{ training.description }}</td>
+            </tr>
+            <tr>
+                <th>Duration</th>
+                <td>{{ training.duration }}</td>
+            </tr>
+            <tr>
+                <th>Extra_costs</th>
+                <td>{{ training.extracosts }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <table class="col-12">
+        <tr>
+            <td>
+                <a class="btn btn-primary" href="{{ path('admin_training_index') }}">Back to the list</a>
+                <a class="btn btn-warning" href="{{ path('admin_training_edit', { 'id': training.id }) }}"><i class="fas fa-edit"></i> Edit</a>
+            </td>
+            <td class="float-right">
+                {{ form_start(delete_form) }}
+                <button class="btn btn-danger" type="submit"><i class="fas fa-trash"></i> Delete</button>
+                {{ form_end(delete_form) }}
+            </td>
+        </tr>
+    </table>
+{% endblock %}

@@ -15,13 +15,12 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @ORM\Table(name="Training")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\TrainingRepository")
  */
-class Training
+class Training //Trainingsvorm
 {
     /**
      * @ORM\Column(type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
-     * @Assert\Blank()
      */
     private $id;
 
@@ -32,15 +31,15 @@ class Training
     private $description;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="time")
      * @Assert\Time()
      * @Assert\NotBlank()
      */
     private $duration; /*Tijd in minuten !!*/
 
     /**
-     * @ORM\Column(type="decimal", precision=2, nullable=true)
-     * @Assert\Currency()
+     * @ORM\Column(type="decimal", precision=6, scale=2, nullable=true)
+
      */
     private $extra_costs;
 

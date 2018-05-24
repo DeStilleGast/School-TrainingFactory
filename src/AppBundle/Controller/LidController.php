@@ -18,10 +18,22 @@ use Symfony\Component\Routing\Annotation\Route;
  */
 class LidController extends Controller
 {
+    private function generateMenu(){
+        return [
+            ["title" => "Home", "path" => "lid_home"],
+        ];
+    }
+
+
     /**
      * @Route("/", name="lid_home")
      */
     public function palceholder(){
-        return new Response("<head></head><body>LID PLACEHOLDER</body>");
+        return $this->xRender("Lid/home.html.twig");
+    }
+
+
+    private function xRender($view, array $arr = array(), Response $response = null){
+        return $this->render($view, array_merge($arr, ['simpleMenu' => $this->generateMenu()]), $response);
     }
 }

@@ -4,9 +4,11 @@ namespace AppBundle\Controller;
 
 use AppBundle\Entity\Lesson;
 use AppBundle\Entity\Member;
+use AppBundle\Form\MemberType;
 use AppBundle\Form\RegisterMemberType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -34,7 +36,7 @@ class DefaultController extends Controller
         // get the login error if there is one
         $error = $authenticationUtils->getLastAuthenticationError();
 
-        // last username entered by the user
+        // last username entered by the Lid
         $lastUsername = $authenticationUtils->getLastUsername();
 
         $this->addFlash("loginError", $error);
@@ -89,7 +91,8 @@ class DefaultController extends Controller
 
         //Create builder
         $member = new Member();
-        $form = $this->createForm(RegisterMemberType::class, $member);
+        $form = $this->createForm(MemberType::class, $member);
+        $form->add('save', SubmitType::class, array('label'=>"registreren"));
 
         // handler submit if any
         $form->handleRequest($request);
@@ -156,6 +159,4 @@ class DefaultController extends Controller
     private function xRender($view, array $arr = array(), Response $response = null){
         return $this->render($view, array_merge($arr, ['simpleMenu' => $this->generateMenu()]), $response);
     }
-
-
 }

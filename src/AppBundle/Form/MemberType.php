@@ -1,15 +1,6 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Falco
- * Date: 22-5-2018
- * Time: 14:52
- */
 
 namespace AppBundle\Form;
-
-
-use AppBundle\Entity\User;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\BirthdayType;
@@ -21,8 +12,11 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class RegisterMemberType extends AbstractType
+class MemberType extends AbstractType
 {
+    /**
+     * {@inheritdoc}
+     */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
@@ -44,14 +38,24 @@ class RegisterMemberType extends AbstractType
                 ]])
             ->add("Street", TextType::class, ['label' => 'Straat:'])
             ->add("portal_code", TextType::class, ['label' => 'Postcode:'])
-            ->add("place", TextType::class, ['label' => 'Stad/drop:'])
+            ->add("place", TextType::class, ['label' => 'Stad/dorp:']);
 
-        ;
-    }
-
+    }/**
+     * {@inheritdoc}
+     */
     public function configureOptions(OptionsResolver $resolver)
     {
-        $resolver->setDefaults(['data_class' => 'AppBundle\Entity\Member']);
+        $resolver->setDefaults(array(
+            'data_class' => 'AppBundle\Entity\Member'
+        ));
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getBlockPrefix()
+    {
+        return 'appbundle_user';
     }
 
 

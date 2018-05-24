@@ -13,7 +13,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  *
  * @ORM\InheritanceType(value="SINGLE_TABLE")
  * @ORM\DiscriminatorColumn(name="discr", type="string")
- * @ORM\DiscriminatorMap({"user" = "User", "member" = "Member", "instructeur" = "Instructeur", "admin" = "Admin"})
+ * @ORM\DiscriminatorMap({"Lid" = "User", "member" = "Member", "instructeur" = "Instructeur", "admin" = "Admin"})
  */
 class User implements UserInterface, \Serializable
 {
@@ -98,7 +98,7 @@ class User implements UserInterface, \Serializable
 
 
     /**
-     * Returns the roles granted to the user.
+     * Returns the roles granted to the Lid.
      *
      * <code>
      * public function getRoles()
@@ -108,10 +108,10 @@ class User implements UserInterface, \Serializable
      * </code>
      *
      * Alternatively, the roles might be stored on a ``roles`` property,
-     * and populated in any number of different ways when the user object
+     * and populated in any number of different ways when the Lid object
      * is created.
      *
-     * @return (Role|string)[] The user roles
+     * @return (Role|string)[] The Lid roles
      */
     public function getRoles()
     {
@@ -129,7 +129,7 @@ class User implements UserInterface, \Serializable
 
 
     /**
-     * Returns the password used to authenticate the user.
+     * Returns the password used to authenticate the Lid.
      *
      * This should be the encoded password. On authentication, a plain-text
      * password will be salted, encoded, and then compared to this value.
@@ -164,7 +164,7 @@ class User implements UserInterface, \Serializable
     }
 
     /**
-     * Returns the username used to authenticate the user.
+     * Returns the username used to authenticate the Lid.
      *
      * @return string The username
      */
@@ -299,7 +299,7 @@ class User implements UserInterface, \Serializable
 
 
     /**
-     * Removes sensitive data from the user.
+     * Removes sensitive data from the Lid.
      *
      * This is important if, at any given point, sensitive information like
      * the plain-text password is stored on this object.
