@@ -3,6 +3,9 @@ body {
     height: 100%;
 }
 
+.bodyBlock{
+   padding-bottom: 60px;
+}
 
 .footer {
     position: fixed;
@@ -16,14 +19,10 @@ body {
 
     margin-top: 10px;
 }
-/*!* Custom page CSS*/
-/*-------------------------------------------------- *!*/
-/*!* Not required for template or sticky footer method. *!*/
 
-.container {
-    width: auto;
-    max-width: 680px;
-    padding: 0 15px;
+.headerBanner{
+    max-width: 225px;
+    max-height: 130px;
 }
 
 .menu{
@@ -63,12 +62,14 @@ body {
     margin-top: 20px;
 }
 
-.btn-primary{
+.btn-newprimary{
     background-color: darkred;
     border-color: darkred;
+    color: #fff;
 }
 
-.btn-primary:hover{
+.btn-newprimary:hover{
     background-color: #bb0000;
     border-color: darkred;
+    color: #fff;
 }
