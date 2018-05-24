@@ -1,0 +1,12 @@
+{% extends "baseBezoeker.twig" %}
+
+{% block body %}
+
+
+    {% for les in aanbod %}
+        <div class="card">
+            <div class="card-body">{{ les.date|date("d-m-Y") }}</div>
+        </div>
+    {% endfor %}
+
+{% endblock %}

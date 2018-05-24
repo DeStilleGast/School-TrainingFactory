@@ -2,6 +2,7 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Entity\Lesson;
 use AppBundle\Entity\Member;
 use AppBundle\Form\RegisterMemberType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -17,6 +18,7 @@ class DefaultController extends Controller
     private function generateMenu(){
         return [
             ["title" => "Homepage", "path" => "homepage"],
+            ["title" => "Active lessen", "path" => "aanbodBezoeker"],
             ["title" => "Gedrag regels", "path" => "bezoekerGedragRegels"],
             ["title" => "Contact", "path" => "bezoekerContact"],
             ["title" => "Registreren", "path" => "registerLid"]
@@ -92,17 +94,42 @@ class DefaultController extends Controller
         // handler submit if any
         $form->handleRequest($request);
         if($form->isSubmitted() && $form->isValid()){
-            //Encode the password
-            $password = $passwordEncoder->encodePassword($member, $member->getPlainPassword());
-            $member->setPassword($password);
+            $repository=$this->getDoctrine()->getRepository(Member::class);
+            $bestaande_user = $repository->findOneBy(['username' => $form->getData()->getUsername()]);
+            $bestaande_email = $repository->findOneBy(['email' => $form->getData()->getEmail()]);
 
-            //save the User!
-            $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->persist($member);
-            $entityManager->flush();
+            if($bestaande_user==null && $bestaande_email == null)
+            {
+                //Encode the password
+                $password = $passwordEncoder->encodePassword($member, $member->getPlainPassword());
+                $member->setPassword($password);
 
-            $this->addFlash("ok", "You are registered, please log in");
-            return $this->redirectToRoute("login");
+                $member->setRoles(["ROLE_LID"]);
+
+
+                //save the User!
+                $entityManager = $this->getDoctrine()->getManager();
+                $entityManager->persist($member);
+                $entityManager->flush();
+
+                $this->addFlash("ok", "You are registered, please log in");
+                return $this->redirectToRoute("login");
+            }
+            else if($bestaande_user != null)
+            {
+                $this->addFlash(
+                    'error',
+                    $member->getUsername()." bestaat al, kies een andere gebruikersnaam"
+                );
+                //vanaf hier ga je weer uit de if
+            }else if($bestaande_email != null)
+            {
+                $this->addFlash(
+                    'error',
+                    $member->getEmail()." is al in gebruik, kies een andere email of vraag een nieuw wachtwoord aan"
+                );
+                //vanaf hier ga je weer uit de if
+            }
         }
 
         return $this->xRender(
@@ -112,7 +139,19 @@ class DefaultController extends Controller
 
     }
 
+    /**
+     * @Route(path="/aanbod", name="aanbodBezoeker")
+     */
+    public function aanbodPagina(){
+        $repo = $this->getDoctrine()->getRepository(Lesson::class);
+        $res = $repo->verkrijgLesAanbodBezoeker();
 
+        return $this->xRender("Bezoeker/aanbod.html.twig", ["aanbod" => $res]);
+    }
+
+    private function renderDump($toDump){
+        return $this->render("vardump.twig", ["toDump" => $toDump]);
+    }
 
     private function xRender($view, array $arr = array(), Response $response = null){
         return $this->render($view, array_merge($arr, ['simpleMenu' => $this->generateMenu()]), $response);

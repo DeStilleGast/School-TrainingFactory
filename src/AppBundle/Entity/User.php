@@ -56,7 +56,7 @@ class User implements UserInterface, \Serializable
     private $firstname;
 
     /**
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="string", nullable=true)
      */
     private $preprovision;
 
@@ -74,7 +74,6 @@ class User implements UserInterface, \Serializable
 
     /**
      * @ORM\Column(type="text")
-     * @Assert\Choice(choices="{'Man', 'Vrouw'}")
      */
     private $gender;
 
@@ -120,6 +119,16 @@ class User implements UserInterface, \Serializable
     }
 
     /**
+     * @param array $roles
+     */
+    public function setRoles($roles)
+    {
+        $this->roles = $roles;
+    }
+
+
+
+    /**
      * Returns the password used to authenticate the user.
      *
      * This should be the encoded password. On authentication, a plain-text
@@ -163,6 +172,15 @@ class User implements UserInterface, \Serializable
     {
         return $this->username;
     }
+
+    /**
+     * @param mixed $username
+     */
+    public function setUsername($username)
+    {
+        $this->username = $username;
+    }
+
 
     /**
      * @return mixed
