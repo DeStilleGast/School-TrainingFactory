@@ -1,0 +1,32 @@
+{% extends 'baseLoggedIn.twig' %}
+
+{% block body %}
+    <h1>Agenda</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Date</th>
+                <th>Location</th>
+                <th>Instructeur</th>
+                <th>Trainings form</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for lesson in lessons %}
+            <tr>
+                <td>{% if lesson.date %}{{ lesson.date|date('Y-m-d') }}{% endif %}</td>
+                <td>{{ lesson.location }}</td>
+                <td>{{ lesson.instructeur.fullname }}</td>
+                <td>{{ lesson.training.description }}</td>
+                <td>
+                    <a class="btn btn-info" href="{{ path('instructeur_agenda_show', { 'id': lesson.id }) }}">show</a>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    
+{% endblock %}

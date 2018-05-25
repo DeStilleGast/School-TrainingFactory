@@ -51,7 +51,7 @@ class Registration
     }
 
     /**
-     * @param integer $payment
+     * @param boolean $payment
      */
     public function setPayment($payment)
     {
@@ -59,7 +59,7 @@ class Registration
     }
 
     /**
-     * @return integer
+     * @return boolean
      */
     public function getPayment()
     {

@@ -1,0 +1,33 @@
+{% extends 'baseLoggedIn.twig' %}
+
+{% block body %}
+    <h1>Lesson</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ lesson.id }}</td>
+            </tr>
+            <tr>
+                <th>Date</th>
+                <td>{% if lesson.date %}{{ lesson.date|date('Y-m-d') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Location</th>
+                <td>{{ lesson.location }}</td>
+            </tr>
+            <tr>
+                <th>Maximaal aantal personen</th>
+                <td>{{ lesson.maxpersons }}</td>
+            </tr>
+            <tr>
+                <th>Geregistreerde personen</th>
+                <td>{{ lesson.registrations.count }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a class="btn btn-primary" href="{{ path('instructeur_agenda_index') }}">Back to the list</a>
+
+{% endblock %}

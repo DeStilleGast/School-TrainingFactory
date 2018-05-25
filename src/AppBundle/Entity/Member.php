@@ -103,6 +103,4 @@ class Member extends User
     {
         $this->registrations = $registrations;
     }
-
-
 }

@@ -43,6 +43,7 @@ class Lesson
 
     /**
      * @ORM\Column(type="integer")
+
      */
     private $max_persons;
 
@@ -65,7 +66,7 @@ class Lesson
     private $instructeur;
 
     /**
-     * @return mixed
+     * @return integer
      */
     public function getId()
     {
@@ -73,7 +74,7 @@ class Lesson
     }
 
     /**
-     * @return mixed
+     * @return \DateTime
      */
     public function getDate()
     {
@@ -89,7 +90,7 @@ class Lesson
     }
 
     /**
-     * @return mixed
+     * @return string
      */
     public function getLocation()
     {
@@ -97,7 +98,7 @@ class Lesson
     }
 
     /**
-     * @param mixed $location
+     * @param string $location
      */
     public function setLocation($location)
     {
@@ -105,7 +106,7 @@ class Lesson
     }
 
     /**
-     * @return mixed
+     * @return integer
      */
     public function getMaxPersons()
     {
@@ -121,7 +122,7 @@ class Lesson
     }
 
     /**
-     * @return mixed
+     * @return Training
      */
     public function getTraining()
     {
@@ -137,7 +138,7 @@ class Lesson
     }
 
     /**
-     * @return mixed
+     * @return Registration[]
      */
     public function getRegistrations()
     {
@@ -145,7 +146,7 @@ class Lesson
     }
 
     /**
-     * @param mixed $registrations
+     * @param Registration $registrations
      */
     public function setRegistrations($registrations)
     {
@@ -167,7 +168,4 @@ class Lesson
     {
         $this->instructeur = $instructeur;
     }
-
-
-
 }

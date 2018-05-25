@@ -69,3 +69,9 @@ body {
     border-color: darkred;
     color: #fff;
 }
+
+.card{
+    margin: 5px;
+    min-width: 300px;
+    max-width: 300px;
+}

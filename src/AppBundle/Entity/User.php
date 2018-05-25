@@ -295,6 +295,13 @@ class User implements UserInterface, \Serializable
     }
 
 
+    public function getFullName(){
+        if($this->preprovision)
+        return $this->firstname . " " . $this->preprovision . " " . $this->lastname;
+
+        return $this->firstname . " " . $this->lastname;
+    }
+
 
 
 

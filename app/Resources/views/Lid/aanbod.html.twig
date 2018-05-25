@@ -1,4 +1,4 @@
-{% extends "baseBezoeker.twig" %}
+{% extends "baseLoggedIn.twig" %}
 
 {% block body %}
 
@@ -14,7 +14,9 @@
                 Max aantal personen: {{ les.maxpersons }}<br>
                 Aangemelde personen: {{ les.registrations.count }}<br>
                 </p>
-                <a href="#" style="color: darkred;" class="card-link">Log in om aan te melden</a>
+
+                <a href="{{ path('lid_inschijven', {'id': les.id}) }}" class="btn btn-newprimary card-link">Inschrijven</a>
+
             </div>
         </div>
 

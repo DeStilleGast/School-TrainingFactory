@@ -15,8 +15,8 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @ORM\Table(name="Training")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\TrainingRepository")
  */
-class Training //Trainingsvorm
-{
+class Training
+{ //Trainingsvorm
     /**
      * @ORM\Column(type="integer")
      * @ORM\Id
@@ -35,7 +35,7 @@ class Training //Trainingsvorm
      * @Assert\Time()
      * @Assert\NotBlank()
      */
-    private $duration; /*Tijd in minuten !!*/
+    private $duration; /*Tijd in minuten ??*/
 
     /**
      * @ORM\Column(type="decimal", precision=6, scale=2, nullable=true)

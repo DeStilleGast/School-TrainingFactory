@@ -1,0 +1,40 @@
+{% extends 'baseLoggedIn.twig' %}
+
+{% block body %}
+    <h1>Lesson</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ lesson.id }}</td>
+            </tr>
+            <tr>
+                <th>Date</th>
+                <td>{% if lesson.date %}{{ lesson.date|date('Y-m-d') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Location</th>
+                <td>{{ lesson.location }}</td>
+            </tr>
+            <tr>
+                <th>Maximaal aantal personen</th>
+                <td>{{ lesson.maxpersons }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <table class="col-12">
+        <tr>
+            <td>
+                <a class="btn btn-primary" href="{{ path('Instructeurs_index') }}">Back to the list</a>
+                <a class="btn btn-dark" href="{{ path('Instructeurs_edit', { 'id': lesson.id }) }}"><i class="fas fa-edit"></i>Edit</a>
+            </td>
+            <td class="float-right">
+                {{ form_start(delete_form) }}
+                    <input class="btn btn-danger" type="submit" value="Delete">
+                {{ form_end(delete_form) }}
+            </td>
+        </tr>
+    </table>
+{% endblock %}

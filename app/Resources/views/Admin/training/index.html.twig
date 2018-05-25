@@ -21,7 +21,7 @@
                 <td>{{ training.duration|date("h:i") }}</td>
                 <td>{{ training.extracosts }}</td>
                 <td>
-                    <a class="btn btn-primary" href="{{ path('admin_training_show', { 'id': training.id }) }}"><i class="fas fa-glasses"></i> show</a>
+                    <a class="btn btn-info" href="{{ path('admin_training_show', { 'id': training.id }) }}"><i class="fas fa-glasses"></i> show</a>
                     <a class="btn btn-warning" href="{{ path('admin_training_edit', { 'id': training.id }) }}"><i class="fas fa-edit"></i> edit</a>
 
                 </td>

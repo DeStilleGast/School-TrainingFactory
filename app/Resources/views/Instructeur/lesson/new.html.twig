@@ -1,0 +1,20 @@
+{% extends 'baseLoggedIn.twig' %}
+
+{% block body %}
+    <h1>Lesson creation</h1>
+
+    {{ form_start(form) }}
+        {{ form_widget(form) }}
+
+    <table class="col-12">
+        <tr>
+            <td>
+                <a class="btn btn-primary" href="{{ path('Instructeurs_index') }}">Back to the list</a>
+            </td>
+            <td class="float-right">
+                <input class="btn btn-success" type="submit" value="Create" />
+                {{ form_end(form) }}
+            </td>
+        </tr>
+    </table>
+{% endblock %}

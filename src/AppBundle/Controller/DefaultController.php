@@ -20,7 +20,7 @@ class DefaultController extends Controller
     private function generateMenu(){
         return [
             ["title" => "Homepage", "path" => "homepage"],
-            ["title" => "Active lessen", "path" => "aanbodBezoeker"],
+            ["title" => "Aankomende lessen", "path" => "aanbodBezoeker"],
             ["title" => "Gedrag regels", "path" => "bezoekerGedragRegels"],
             ["title" => "Contact", "path" => "bezoekerContact"],
             ["title" => "Registreren", "path" => "registerLid"]

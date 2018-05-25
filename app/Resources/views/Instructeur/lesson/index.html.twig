@@ -1,0 +1,35 @@
+{% extends 'baseLoggedIn.twig' %}
+
+{% block body %}
+    <h1>Lessons list</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Date</th>
+                <th>Location</th>
+                <th>Max aantal personen</th>
+                <th>Aangemeld</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for lesson in lessons %}
+            <tr>
+                <td><a href="{{ path('Instructeurs_show', { 'id': lesson.id }) }}">{{ lesson.id }}</a></td>
+                <td>{% if lesson.date %}{{ lesson.date|date('Y-m-d') }}{% endif %}</td>
+                <td>{{ lesson.location }}</td>
+                <td>{{ lesson.maxpersons }}</td>
+                <td>{{ lesson.registrations.count }}</td>
+                <td>
+                    <a class="btn btn-primary" href="{{ path('Instructeurs_show', { 'id': lesson.id }) }}"><i class="fas fa-glasses"></i> show</a>
+                    <a class="btn btn-warning" href="{{ path('Instructeurs_edit', { 'id': lesson.id }) }}"><i class="fas fa-edit"></i> edit</a>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a class="btn btn-primary" href="{{ path('Instructeurs_new') }}">Create a new lesson</a>
+{% endblock %}

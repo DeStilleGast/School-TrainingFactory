@@ -32,7 +32,7 @@
             </div>
 
             {# Niet de meest fanastiese 'dynamic' menu, maar dit werkt redelijk goed #}
-            <div class="row d-flex align-items-center my-3 text-white-50 box-shadow menu">
+            <div class="row d-flex align-items-center my-3 text-white-50 menu">
                 {% if simpleMenu is defined and simpleMenu %} {#debugging#}
                     {% for menuItem in simpleMenu %}
                         <a href="{{ path(menuItem.path) }}">
@@ -58,7 +58,7 @@
             {% endfor %}
             {% for message in app.flashes('error') %}
                 <div class="alert alert-danger">
-                    <strong>Fout!</strong> Gebruiker {{ message }}
+                    <strong>Fout!</strong> {{ message }}
                 </div>
             {% endfor %}
 
