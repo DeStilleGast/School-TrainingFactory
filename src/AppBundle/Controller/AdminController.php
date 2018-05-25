@@ -22,6 +22,7 @@ class AdminController extends Controller
         return [
             ["title" => "Home", "path" => "admin_home"],
             ["title" => "Members", "path" => "admin_lid_index"],
+            ["title" => "Instructeurs", "path" => "admin_instructeur_index"],
             ["title" => "Trainings", "path" => "admin_training_index"],
 
         ];

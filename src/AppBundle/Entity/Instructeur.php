@@ -24,7 +24,7 @@ class Instructeur extends User
     private $hire_date;
 
     /**
-     * @ORM\Column(type="decimal", precision=2)
+     * @ORM\Column(type="decimal", precision=6, scale=2)
      */
     private $salary;
 

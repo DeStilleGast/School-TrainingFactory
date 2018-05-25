@@ -1,7 +1,7 @@
 {% extends 'baseLoggedIn.twig' %}
 
 {% block body %}
-    <h1>Members list</h1>
+    <h1>Instructeur lijst</h1>
 
     <table class="table table-bordered">
         <thead>
@@ -26,8 +26,8 @@
                 <td>{{ user.gender }}</td>
                 <td>{{ user.email }}</td>
                 <td>
-                    <a class="btn btn-primary" href="{{ path('admin_lid_show', { 'id': user.id }) }}"><i class="fas fa-glasses"></i> show</a>
-                    <a class="btn btn-warning" href="{{ path('admin_lid_edit', { 'id': user.id }) }}"><i class="fas fa-edit"></i> edit</a>
+                    <a class="btn btn-primary" href="{{ path('admin_instructeur_show', { 'id': user.id }) }}"><i class="fas fa-glasses"></i> show</a>
+                    <a class="btn btn-warning" href="{{ path('admin_instructeur_edit', { 'id': user.id }) }}"><i class="fas fa-edit"></i> edit</a>
 
                 </td>
             </tr>
@@ -35,5 +35,5 @@
         </tbody>
     </table>
 
-    <a class="btn btn-primary" href="{{ path('admin_lid_new') }}">Create a new user</a>
+    <a class="btn btn-primary" href="{{ path('admin_instructeur_new') }}">Maak nieuwe instructeur</a>
 {% endblock %}

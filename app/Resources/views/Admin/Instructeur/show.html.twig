@@ -1,7 +1,7 @@
 {% extends 'baseLoggedIn.twig' %}
 
 {% block body %}
-    <h1>Member</h1>
+    <h1>Instructeur</h1>
 
     <table class="table">
         <tbody>
@@ -14,19 +14,19 @@
                 <td>{{ user.username }}</td>
             </tr>
             <tr>
-                <th>Firstname</th>
+                <th>Voornaam</th>
                 <td>{{ user.firstname }}</td>
             </tr>
             <tr>
-                <th>Preprovision</th>
+                <th>Tussenvoegsel</th>
                 <td>{{ user.preprovision }}</td>
             </tr>
             <tr>
-                <th>Lastname</th>
+                <th>Achternaam</th>
                 <td>{{ user.lastname }}</td>
             </tr>
             <tr>
-                <th>Dateofbirth</th>
+                <th>Geboortedatum</th>
                 <td>{% if user.dateofbirth %}{{ user.dateofbirth|date('d-m-Y') }}{% endif %}</td>
             </tr>
             <tr>
@@ -38,24 +38,20 @@
                 <td>{{ user.email }}</td>
             </tr>
             <tr>
-                <th>Straat</th>
-                <td>{{ user.street }}</td>
+                <th>Ingehuurde datum</th>
+                <td>{{ user.hiredate|date("d-m-Y") }}</td>
             </tr>
             <tr>
-                <th>Postcode</th>
-                <td>{{ user.portalcode }}</td>
-            </tr>
-            <tr>
-                <th>Stad/dorp:</th>
-                <td>{{ user.place }}</td>
+                <th>Salaris</th>
+                <td>{{ user.salary }}</td>
             </tr>
         </tbody>
     </table>
 
     <table class="col-12">
         <tr>
-            <td class="float-left"><a class="btn btn-primary" href="{{ path('admin_lid_index') }}">Back to the list</a>
-                <a class="btn btn-dark" href="{{ path('admin_lid_edit', { 'id': user.id }) }}"><i class="fas fa-edit"></i> Edit</a></td>
+            <td class="float-left"><a class="btn btn-primary" href="{{ path('admin_instructeur_index') }}">Back to the list</a>
+                <a class="btn btn-dark" href="{{ path('admin_instructeur_edit', { 'id': user.id }) }}"><i class="fas fa-edit"></i> Edit</a></td>
 
             <td class="float-right">{{ form_start(delete_form) }}
                 <input class="btn btn-danger" type="submit" value="Delete">
