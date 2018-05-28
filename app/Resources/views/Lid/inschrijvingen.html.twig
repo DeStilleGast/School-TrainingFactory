@@ -15,10 +15,7 @@
                     Aangemelde personen: {{ les.registrations.count }}<br>
                 </p>
 
-                {% if(les.registrations.count < les.maxpersons) %}
-                    <a href="{{ path('lid_inschijven', {'id': les.id}) }}" class="btn btn-newprimary card-link">Inschrijven</a>
-                {% endif %}
-
+                <a href="{{ path('lid_uitschrijven', {'id': les.id}) }}" class="btn btn-dark card-link">Uitschrijven</a>
             </div>
         </div>
 

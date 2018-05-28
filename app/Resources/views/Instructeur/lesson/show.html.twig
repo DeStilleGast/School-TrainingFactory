@@ -24,6 +24,18 @@
         </tbody>
     </table>
 
+    <table class="table">
+        <th>Aanmeldingen</th>
+        {% for aanmelding in lesson.registrations %}
+        <tr>
+            <td>
+            {{ aanmelding.member.fullname }}
+            </td>
+        </tr>
+        {% endfor %}
+
+    </table>
+
     <table class="col-12">
         <tr>
             <td>

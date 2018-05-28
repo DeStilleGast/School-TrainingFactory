@@ -10,14 +10,14 @@
         <tr>
             <td>
                 <a class="btn btn-primary" href="{{ path('admin_training_index') }}">Back to the list</a>
-                    <input class="btn btn-success" type="submit" value="Edit" />
+                    {{ form_start(delete_form) }}
+                <button class="btn btn-danger" type="submit"><i class="fas fa-trash"></i> Delete</button>
+                {{ form_end(delete_form) }}
                 {{ form_end(edit_form) }}
             </td>
 
             <td class="float-right">
-                {{ form_start(delete_form) }}
-                <button class="btn btn-danger" type="submit"><i class="fas fa-trash"></i> Delete</button>
-                {{ form_end(delete_form) }}
+                <input class="btn btn-success" type="submit" value="Edit" />
             </td>
         </tr>
     </table>

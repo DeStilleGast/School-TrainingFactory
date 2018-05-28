@@ -49,10 +49,11 @@ class DefaultController extends Controller
      */
     public function indexAction(Request $request)
     {
-        // replace this example code with whatever you need
-        return $this->xRender('Bezoeker/homepage.html.twig', [
-            "error" => $this->get('session')->getFlashBag()->get("loginError"),
-        ]);
+        $em = $this->getDoctrine()->getManager()->getRepository('AppBundle:Lesson');
+        $lessons = $em->findAll();
+        $open = $em->verkrijgLesAanbodBezoeker();
+
+        return $this->xRender("Bezoeker/homepage.html.twig", ["geweest" => $lessons, "open" => $open]);
     }
 
     /**

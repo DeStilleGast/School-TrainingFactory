@@ -168,4 +168,8 @@ class Lesson
     {
         $this->instructeur = $instructeur;
     }
+
+    public function isEqual(Lesson $other){
+        return $this->getId() == $other->getId();
+    }
 }

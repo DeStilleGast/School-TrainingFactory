@@ -130,7 +130,7 @@ class InstructeurControl extends Controller
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('admin_lid_edit', array('id' => $user->getId()));
+            return $this->redirectToRoute('admin_instructeur_edit', array('id' => $user->getId()));
         }
 
         return $this->xRender('Admin/instructeur/edit.html.twig', array(

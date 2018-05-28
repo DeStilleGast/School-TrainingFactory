@@ -31,8 +31,15 @@ class AdminController extends Controller
     /**
      * @Route("/", name="admin_home")
      */
-    public function palceholder(){
-        return $this->xRender("Admin/home.html.twig");
+    public function home(){
+        $em = $this->getDoctrine()->getManager()->getRepository('AppBundle:Lesson');
+        $geweest = $em->findAll();
+        $open = $em->verkrijgLesAanbodBezoeker();
+
+        $members = $this->getDoctrine()->getManager()->getRepository("AppBundle:Member")->findAll();
+        $instructeurs = $this->getDoctrine()->getManager()->getRepository("AppBundle:Instructeur")->findAll();
+
+        return $this->xRender("Admin/home.html.twig", ["geweest" => $geweest, "open" => $open, "members" => $members, "instructeurs" => $instructeurs]);
     }
 
 

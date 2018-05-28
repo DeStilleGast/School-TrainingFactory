@@ -1,5 +1,7 @@
 {% extends "baseLoggedIn.twig" %}
 
 {% block body %}
-    INSTRUCTEUR PLACEHOLDER
+    <p>Hallo {{ app.user.fullname }}</p>
+    <p>U hebt totaal op {{ geweest|length }} lessen opgevoerd/lesgegeven</p>
+    <p>Er zijn op dit moment {{ open|length }} lessen ingeroosterd</p>
 {% endblock %}

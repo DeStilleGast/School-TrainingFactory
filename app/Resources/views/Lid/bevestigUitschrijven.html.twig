@@ -1,0 +1,16 @@
+{% extends 'baseLoggedIn.twig' %}
+
+{% block body %}
+
+    <form action="{{ path('lid_uitschrijven_post', {"id": les.id}) }}" method="post">
+
+        <h1>Uitschrijving</h1>
+        <p>Omdat we een stricte refound policy hebben, kunt u niet digitaal geld terug vragen, u kunt een afspraak maken met de trainer om de kosten terug te krijgen (indien van toepassing)</p>
+
+        <div class="float-right">
+            <a href="{{ path('lid_ingeschreven') }}" class="btn btn-newprimary">Ik heb me bedacht</a>
+            <button class="btn btn-dark" type="submit">Schrijf me uit</button>
+        </div>
+    </form>
+
+{% endblock %}

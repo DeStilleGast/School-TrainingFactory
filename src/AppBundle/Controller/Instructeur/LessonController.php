@@ -26,7 +26,7 @@ class LessonController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $lessons = $em->getRepository('AppBundle:Lesson')->findBy(["instructeur" => $this->getUser()]);
+        $lessons = $em->getRepository('AppBundle:Lesson')->verkrijgInstructeurLessen($this->getUser());
 
         return $this->xRender('instructeur/lesson/index.html.twig', array(
             'lessons' => $lessons,

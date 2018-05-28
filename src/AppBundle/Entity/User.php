@@ -13,7 +13,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  *
  * @ORM\InheritanceType(value="SINGLE_TABLE")
  * @ORM\DiscriminatorColumn(name="discr", type="string")
- * @ORM\DiscriminatorMap({"Lid" = "User", "member" = "Member", "instructeur" = "Instructeur", "admin" = "Admin"})
+ * @ORM\DiscriminatorMap({"Test" = "User", "member" = "Member", "instructeur" = "Instructeur", "admin" = "Admin"})
  */
 class User implements UserInterface, \Serializable
 {
@@ -22,13 +22,12 @@ class User implements UserInterface, \Serializable
      * @ORM\Column(type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
-     * @Assert\Blank()
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=25, unique=true)
-     * @Assert\NotBlank()
+     * @Assert\NotBlank(message="Vul een gebruikersnaam in")
      */
     private $username;
 
@@ -39,7 +38,7 @@ class User implements UserInterface, \Serializable
 
     /**
      * @Assert\Length(max=4096)
-     * @Assert\NotBlank(message="vul een wachtwoord in")
+
      */
     private $plainPassword;
 
@@ -51,7 +50,7 @@ class User implements UserInterface, \Serializable
 
     /**
      * @ORM\Column(type="string")
-     * @Assert\NotBlank(message="First name is required")
+     * @Assert\NotBlank(message="Voornaam is verplicht")
      */
     private $firstname;
 
@@ -62,24 +61,27 @@ class User implements UserInterface, \Serializable
 
     /**
      * @ORM\Column(type="string")
-     * @Assert\NotBlank(message="Last name is required")
+     * @Assert\NotBlank(message="Achternaam is verplicht")
      */
     private $lastname;
 
     /**
      * @ORM\Column(type="date")
      * @Assert\Date()
+     * @Assert\NotBlank(message="Verjaardag is verplicht (voor de categoriën)")
      */
     private $dateofbirth;
 
     /**
      * @ORM\Column(type="text")
+     * @Assert\NotBlank(message="We moeten uw geslacht weten voor de groepen")
      */
     private $gender;
 
     /**
      * @ORM\Column(type="string", length=254, unique=true)
      * @Assert\Email()
+     * @Assert\NotBlank(message="We hebben uw email nodig om notificatie's door te sturen")
      */
     private $email;
 

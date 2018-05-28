@@ -2,4 +2,16 @@
 
 {% block body %}
 
+    <form action="{{ path('lid_inschijven_post', {"id": les.id}) }}" method="post">
+        <h1>Deze les kost geld!</h1>
+        <p>Weet u het zeker dat u zich hier wilt inschrijven ?</p>
+        <p>De kosten voor deze les is: €{{ les.training.extracosts }}</p>
+
+
+        <div class="float-right">
+            <a class="btn btn-dark" href="{{ path('lid_aanbod') }}">Nee, ik wilde alleen even kijken</a>
+            <button class="btn btn-newprimary" type="submit">Ja, ik betaal digitaal</button>
+        </div>
+    </form>
+
 {% endblock %}

@@ -1,1 +1,12 @@
 {% extends 'baseLoggedIn.twig' %}
+
+
+
+{% block body %}
+    <p>Hallo {{ app.user.fullname }}</p>
+    <p>Er zijn totaal {{ open|length }} lessen beschikbaar</p>
+    <p>Er zijn op dit moment {{ geweest|length }} lessen in totaal ingeroosterd en/of geweest</p>
+    <p>Er zijn totaal {{ members|length }} members geregistreerd</p>
+    <p>Er zijn totaal {{ instructeurs|length }} instructeurs geregistreerd</p>
+
+{% endblock %}

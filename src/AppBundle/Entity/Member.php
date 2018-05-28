@@ -8,9 +8,7 @@
 
 namespace AppBundle\Entity;
 
-
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Validator\Constraints as Assert;
 
 
@@ -21,16 +19,20 @@ class Member extends User
 {
     /**
      * @ORM\Column(type="string")
+     * @Assert\NotBlank(message="Voor een straat in")
      */
     private $street;
 
     /**
      * @ORM\Column(type="string")
+     * @Assert\NotBlank(message="Voer een postcode in")
      */
     private $portal_code;
 
     /**
      * @ORM\Column(type="string")
+     * @Assert\NotBlank(message="Voer een plaats in")
+     *
      */
     private $place;
 

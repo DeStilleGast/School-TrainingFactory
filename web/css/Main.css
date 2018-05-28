@@ -72,6 +72,9 @@ body {
 
 .card{
     margin: 5px;
-    min-width: 300px;
-    max-width: 300px;
+
+    width: 350px;
+    /*max-width: 285px;*/
+
+    height: 256px;
 }

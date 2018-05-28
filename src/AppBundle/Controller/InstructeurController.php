@@ -31,9 +31,13 @@ class InstructeurController extends Controller
     /**
      * @Route("/", name="instructeur_home")
      */
-    public function palceholder(){
-//        return new Response("<head></head><body>INSTRUCTEUR PLACEHOLDER</body>");
-        return $this->xRender("Instructeur/home.twig");
+    public function home(){
+
+        $em = $this->getDoctrine()->getManager()->getRepository('AppBundle:Lesson');
+        $lessons = $em->findBy(["instructeur" => $this->getUser()]);
+        $open = $em->verkrijgInstructeurLessen($this->getUser());
+
+        return $this->xRender("Instructeur/home.twig", ["geweest" => $lessons, "open" => $open]);
     }
 
     /**
@@ -46,7 +50,7 @@ class InstructeurController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $lessons = $em->getRepository('AppBundle:Lesson')->findAll();
+        $lessons = $em->getRepository('AppBundle:Lesson')->verkrijgLesAanbodBezoeker();
 
         return $this->xRender('Instructeur/agenda/index.html.twig', array(
             'lessons' => $lessons,
